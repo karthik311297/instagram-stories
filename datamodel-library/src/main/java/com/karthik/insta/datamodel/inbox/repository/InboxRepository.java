@@ -1,7 +1,7 @@
-package com.karthik.insta.datamodel.repository;
+package com.karthik.insta.datamodel.inbox.repository;
 
-import com.karthik.insta.datamodel.model.InboxItem;
-import com.karthik.insta.datamodel.model.identifier.InboxItemId;
+import com.karthik.insta.datamodel.inbox.model.InboxItem;
+import com.karthik.insta.datamodel.inbox.identifier.InboxItemId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

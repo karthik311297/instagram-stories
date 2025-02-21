@@ -1,6 +1,7 @@
-package com.karthik.insta.datamodel.model.identifier;
+package com.karthik.insta.datamodel.follow.identifier;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class FollowGraphId implements Serializable {
 
@@ -29,5 +30,18 @@ public class FollowGraphId implements Serializable {
 
     public void setFollowee(Long followee) {
         this.followee = followee;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FollowGraphId that = (FollowGraphId) o;
+        return Objects.equals(follower, that.follower) && Objects.equals(followee, that.followee);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(follower, followee);
     }
 }

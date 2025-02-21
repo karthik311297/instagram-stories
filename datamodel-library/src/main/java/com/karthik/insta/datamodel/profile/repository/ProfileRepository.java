@@ -1,6 +1,6 @@
-package com.karthik.insta.datamodel.repository;
+package com.karthik.insta.datamodel.profile.repository;
 
-import com.karthik.insta.datamodel.model.Profile;
+import com.karthik.insta.datamodel.profile.model.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

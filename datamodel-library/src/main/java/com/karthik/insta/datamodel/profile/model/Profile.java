@@ -1,4 +1,4 @@
-package com.karthik.insta.datamodel.model;
+package com.karthik.insta.datamodel.profile.model;
 
 import jakarta.persistence.*;
 
@@ -13,7 +13,7 @@ public class Profile {
     @Column(nullable = false)
     private String username;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String summary;
 
     public Long getId() {

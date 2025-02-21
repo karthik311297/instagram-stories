@@ -1,5 +1,6 @@
-package com.karthik.insta.datamodel.model;
+package com.karthik.insta.datamodel.story.model;
 
+import com.karthik.insta.datamodel.profile.model.Profile;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -12,8 +13,11 @@ public class StoryMetadata {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private String mediaLink;
+
+    @Column(columnDefinition = "TEXT")
+    private String statustext;
 
     @Column(nullable = false)
     private LocalDateTime expiry;
@@ -36,6 +40,14 @@ public class StoryMetadata {
 
     public void setMediaLink(String mediaLink) {
         this.mediaLink = mediaLink;
+    }
+
+    public String getStatustext() {
+        return statustext;
+    }
+
+    public void setStatustext(String statustext) {
+        this.statustext = statustext;
     }
 
     public LocalDateTime getExpiry() {

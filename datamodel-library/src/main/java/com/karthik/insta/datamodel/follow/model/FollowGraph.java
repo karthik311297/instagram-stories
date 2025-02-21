@@ -1,6 +1,7 @@
-package com.karthik.insta.datamodel.model;
+package com.karthik.insta.datamodel.follow.model;
 
-import com.karthik.insta.datamodel.model.identifier.FollowGraphId;
+import com.karthik.insta.datamodel.follow.identifier.FollowGraphId;
+import com.karthik.insta.datamodel.profile.model.Profile;
 import jakarta.persistence.*;
 
 @Entity

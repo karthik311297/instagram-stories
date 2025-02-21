@@ -1,6 +1,8 @@
-package com.karthik.insta.datamodel.model;
+package com.karthik.insta.datamodel.inbox.model;
 
-import com.karthik.insta.datamodel.model.identifier.InboxItemId;
+import com.karthik.insta.datamodel.inbox.identifier.InboxItemId;
+import com.karthik.insta.datamodel.profile.model.Profile;
+import com.karthik.insta.datamodel.story.model.StoryMetadata;
 import jakarta.persistence.*;
 
 @Entity
