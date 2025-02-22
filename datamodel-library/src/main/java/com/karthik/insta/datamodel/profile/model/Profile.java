@@ -3,7 +3,7 @@ package com.karthik.insta.datamodel.profile.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "userprofile")
+@Table(name = "userprofile", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
 public class Profile {
 
     @Id
