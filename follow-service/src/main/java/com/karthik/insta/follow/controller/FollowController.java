@@ -25,7 +25,7 @@ public class FollowController {
     @Autowired
     public ProfileRepository profileRepository;
 
-    // TODO: follwer id will come from auth token once security is implemented
+    // TODO: follower id will come from auth token once security is implemented
     @PostMapping
     public ResponseEntity<FollowGraph> followUserProfile(@RequestBody FollowGraphId followGraphId) {
         Optional<Profile> follower = profileRepository.findById(followGraphId.getFollower());

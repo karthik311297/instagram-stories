@@ -20,6 +20,9 @@
         <module>story-upload-service</module>
         <module>profile-service</module>
         <module>follow-service</module>
+        <module>story-processing-service</module>
+        <module>story-push-service</module>
+        <module>inbox-service</module>
     </modules>
 
     <properties>
