@@ -51,7 +51,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass></mainClass>
+                    <mainClass>com.karthik.insta.storypush.StoryPushApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>
