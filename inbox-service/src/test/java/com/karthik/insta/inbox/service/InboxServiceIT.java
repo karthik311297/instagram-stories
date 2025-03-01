@@ -1,6 +1,8 @@
 package com.karthik.insta.inbox.service;
 
 import com.karthik.insta.datamodel.inbox.repository.InboxRepository;
+import com.karthik.insta.datamodel.profile.model.Profile;
+import com.karthik.insta.datamodel.profile.repository.ProfileRepository;
 import com.karthik.insta.datamodel.story.model.StoryMetadata;
 import com.karthik.insta.datamodel.story.repository.StoryMetaDataRepository;
 import org.junit.jupiter.api.AfterAll;
@@ -20,14 +22,12 @@ import java.util.Optional;
 
 @Testcontainers
 @SpringBootTest
-public class InboxServiceIT
-{
+public class InboxServiceIT {
     private static final PostgreSQLContainer<?> dbContainer = new PostgreSQLContainer<>(
             "postgres:15-alpine");
 
     @BeforeAll
-    static void setup()
-    {
+    static void setup() {
         dbContainer.withDatabaseName("test").withUsername("sa").withPassword("sa");
         dbContainer.withInitScript("test-schema-data.sql");
         dbContainer.start();
@@ -35,8 +35,7 @@ public class InboxServiceIT
     }
 
     @AfterAll
-    static void tearDown()
-    {
+    static void tearDown() {
         dbContainer.stop();
     }
 
@@ -56,12 +55,14 @@ public class InboxServiceIT
     @Autowired
     InboxRepository inboxRepository;
 
-    @Test
-    public void shouldAddStoryToFollowersInbox()
-    {
-        Optional<StoryMetadata> storyMetadata = storyMetaDataRepository.findById(1L);
-        List<Long> followers = Arrays.asList(2L, 3L);
+    @Autowired
+    ProfileRepository profileRepository;
 
+    @Test
+    public void shouldAddStoryToFollowersInbox() {
+        Optional<StoryMetadata> storyMetadata = storyMetaDataRepository.findById(1L);
+
+        List<Profile> followers = profileRepository.findAllByIdIn(Arrays.asList(2L, 3L));
         inboxService.addStoryToFollowersInbox(storyMetadata.get(), followers);
 
         List<StoryMetadata> storiesInProfile1Inbox = inboxRepository.findInboxStoriesByProfileId(1L);
