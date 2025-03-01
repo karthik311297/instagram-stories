@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>datamodel-library</module>
-        <module>messaging-library</module>
+        <module>pubsub-library</module>
         <module>story-upload-service</module>
         <module>profile-service</module>
         <module>follow-service</module>
