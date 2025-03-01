@@ -2,6 +2,8 @@ package com.karthik.insta.datamodel.profile.model;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "userprofile", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
 public class Profile {
@@ -38,5 +40,18 @@ public class Profile {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Profile profile = (Profile) o;
+        return Objects.equals(id, profile.id) && Objects.equals(username, profile.username) && Objects.equals(summary, profile.summary);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, summary);
     }
 }

@@ -1,8 +1,6 @@
 package com.karthik.insta.inbox.service;
 
 import com.karthik.insta.datamodel.inbox.repository.InboxRepository;
-import com.karthik.insta.datamodel.profile.model.Profile;
-import com.karthik.insta.datamodel.profile.repository.ProfileRepository;
 import com.karthik.insta.datamodel.story.model.StoryMetadata;
 import com.karthik.insta.datamodel.story.repository.StoryMetaDataRepository;
 import org.junit.jupiter.api.AfterAll;
@@ -16,7 +14,6 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,15 +52,11 @@ public class InboxServiceIT {
     @Autowired
     InboxRepository inboxRepository;
 
-    @Autowired
-    ProfileRepository profileRepository;
-
     @Test
     public void shouldAddStoryToFollowersInbox() {
         Optional<StoryMetadata> storyMetadata = storyMetaDataRepository.findById(1L);
 
-        List<Profile> followers = profileRepository.findAllByIdIn(Arrays.asList(2L, 3L));
-        inboxService.addStoryToFollowersInbox(storyMetadata.get(), followers);
+        inboxService.addStoryToFollowersInbox(storyMetadata.get());
 
         List<StoryMetadata> storiesInProfile1Inbox = inboxRepository.findInboxStoriesByProfileId(1L);
         List<StoryMetadata> storiesInProfile2Inbox = inboxRepository.findInboxStoriesByProfileId(2L);

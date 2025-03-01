@@ -36,6 +36,23 @@
        foreign key (story_id)
        references storymetadata;
 
+
+    create table followgraph (
+        followee_id bigint not null,
+        follower_id bigint not null,
+        primary key (followee_id, follower_id)
+    );
+
+    alter table if exists followgraph
+       add constraint fk_followee_profile
+       foreign key (followee_id)
+       references userprofile on delete cascade;
+
+    alter table if exists followgraph
+       add constraint fk_follower_profile
+       foreign key (follower_id)
+       references userprofile on delete cascade;
+
     INSERT INTO userprofile (summary, username)
     VALUES
         ('Tech enthusiast and blogger', 'john_doe'),
@@ -46,6 +63,9 @@
     VALUES
         (NOW() + INTERVAL '1 day', NULL, 'Enjoying the sunset!', 1);
 
-
+    INSERT INTO followgraph (followee_id, follower_id)
+    VALUES
+        (1, 2),
+        (1, 3);
 
 

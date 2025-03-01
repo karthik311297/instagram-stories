@@ -1,5 +1,6 @@
 package com.karthik.insta.inbox.service;
 
+import com.karthik.insta.datamodel.follow.repository.FollowGraphRepository;
 import com.karthik.insta.datamodel.inbox.model.InboxItem;
 import com.karthik.insta.datamodel.inbox.repository.InboxRepository;
 import com.karthik.insta.datamodel.profile.model.Profile;
@@ -17,12 +18,15 @@ public class InboxService {
     @Autowired
     public InboxRepository inboxRepository;
 
+    @Autowired
+    public FollowGraphRepository followGraphRepository;
+
     @Transactional
-    public void addStoryToFollowersInbox(StoryMetadata storyMetadata, List<Profile> profiles)
-    {
+    public void addStoryToFollowersInbox(StoryMetadata storyMetadata) {
+        List<Profile> followersOfProfile = followGraphRepository
+                .findFollowersOfProfile(storyMetadata.getProfile());
         List<InboxItem> inboxItems = new ArrayList<>();
-        for(Profile profile : profiles)
-        {
+        for (Profile profile : followersOfProfile) {
             InboxItem inboxItem = new InboxItem();
             inboxItem.setStory(storyMetadata);
             inboxItem.setProfile(profile);
