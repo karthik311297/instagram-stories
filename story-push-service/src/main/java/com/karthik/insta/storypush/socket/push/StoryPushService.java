@@ -26,6 +26,7 @@ public class StoryPushService {
         ConnectionManager connectionManager = ConnectionManager.getInstance();
         for (Profile follower : followersOfProfile) {
             WebSocketSession session = connectionManager.getClientSession(follower.getId());
+            if (session == null) continue;
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.registerModule(new JavaTimeModule());
             session.sendMessage(
